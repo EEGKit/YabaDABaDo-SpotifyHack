@@ -147,6 +147,10 @@
                     var pid = playlistIdOwner[playlistCounter];
                     //console.log(playlistCounter);
 
+                  //////////////////////////////
+                  /// Get list of Track IDs ///
+                  //////////////////////////////
+
                     (function(playlistCounter){
                       $.ajax({
                           type: 'GET',
@@ -159,12 +163,46 @@
 
                               //console.log(response.items);
 
+                              var string = "";
+
                               for(j = 0; j < response.items.length; j++)
                               {
 
                                 //console.log("Track ID = " + response.items[j].track.id);
                                 tracks[playlistCounter][j] = response.items[j].track.id;
+                                string = string + response.items[j].track.id + ",";
                               }
+
+
+                              //////////////////////////////////////
+                              // Get audio analysis of each track //
+                              //////////////////////////////////////
+
+                              (function(string){
+                                  $.ajax({
+                                          type: 'GET',
+                                          dataType: "json",
+                                          url: 'https://api.spotify.com/v1/audio-features?ids=' + string,
+                                          headers: {
+                                            'Authorization': 'Bearer ' + access_token
+                                          },
+                                          success: function(response) {
+
+                                              var danceability = 0;
+
+                                              for(l = 0; l < response.audio_features.length; l++){
+
+                                                danceability = (danceability + response.audio_features[l].danceability) / 2;
+
+                                              }
+                                              console.log(danceability);
+
+//                                              console.log(response);
+                                          }
+
+                                      });
+                              })(string);
+
 
 
                           }
@@ -173,7 +211,7 @@
                     })(playlistCounter);
 
                   }
-                  console.log(tracks);
+                  //console.log(tracks);
 
 
                   $('#login').hide();
