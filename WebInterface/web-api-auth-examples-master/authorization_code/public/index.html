@@ -65,7 +65,7 @@
 
     <!-- Read in brain scanner file -->
     <script>
-
+        var longtermplaylistdata = null;
         var arry = [];
         function done()
         {
@@ -142,7 +142,7 @@
                   'Authorization': 'Bearer ' + access_token
                 },
                 success: function(response) {
-
+                  longtermplaylistdata = response;
                   //////////////////////////////
                   // Get list of playlist IDs //
                   //////////////////////////////
@@ -293,7 +293,7 @@
             console.log("return position = " + returnPosition);
             console.log("Owner ID = " + ownerid);
             console.log("Playlist Id = " + playlistid);
-
+            console.log(longtermplaylistdata);
         }
 
         function calculateDiff(playlistValues) {
