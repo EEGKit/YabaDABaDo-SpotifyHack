@@ -196,19 +196,19 @@
 
                                               for(l = 0; l < response.audio_features.length; l++){
 
-                                                danceability = (danceability + response.audio_features[l].danceability) / 2;
-                                                energy = (energy + response.audio_features[l].energy) / 2;
-                                                acousticness = (acousticness + response.audio_features[l].acousticness) / 2;
-                                                valence = (valence + response.audio_features[l].valence) / 2;
+                                                danceability = (danceability + response.audio_features[l].danceability);
+                                                energy = (energy + response.audio_features[l].energy);
+                                                acousticness = (acousticness + response.audio_features[l].acousticness);
+                                                valence = (valence + response.audio_features[l].valence);
 
 
                                               }
 
                                                 playlistValues[playlistCounter] = new Array(); 
-                                                playlistValues[playlistCounter][0] = danceability;
-                                                playlistValues[playlistCounter][1] = energy;
-                                                playlistValues[playlistCounter][2] = acousticness;
-                                                playlistValues[playlistCounter][3] = valence;
+                                                playlistValues[playlistCounter][0] = ((danceability / (l + 1)) * 100).toFixed(0);
+                                                playlistValues[playlistCounter][1] = ((energy / (l + 1)) * 100).toFixed(0);
+                                                playlistValues[playlistCounter][2] = ((acousticness / (l + 1)) * 100).toFixed(0);
+                                                playlistValues[playlistCounter][3] = ((valence / (l + 1)) * 100).toFixed(0);
 
                                           }
 
