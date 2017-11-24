@@ -1,0 +1,5 @@
+C:\Users\User\Downloads\community-sdk-master\bin\win32\DotNetEmotivSDK.dll
+C:\Users\User\Downloads\community-sdk-master\bin\win32\DotNetEmotivSDK.pdb
+C:\Users\User\Downloads\community-sdk-master\examples_basic\C#\DotNetEmotivSDK\obj\x86\Debug\DotNetEmotivSDK.csprojResolveAssemblyReference.cache
+C:\Users\User\Downloads\community-sdk-master\examples_basic\C#\DotNetEmotivSDK\obj\x86\Debug\DotNetEmotivSDK.dll
+C:\Users\User\Downloads\community-sdk-master\examples_basic\C#\DotNetEmotivSDK\obj\x86\Debug\DotNetEmotivSDK.pdb

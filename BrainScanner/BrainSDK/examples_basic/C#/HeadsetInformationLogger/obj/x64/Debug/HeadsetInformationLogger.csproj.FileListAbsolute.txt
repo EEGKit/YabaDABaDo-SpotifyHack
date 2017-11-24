@@ -1,0 +1,5 @@
+C:\Users\User\Downloads\community-sdk-master\bin\win64\HeadsetInformationLogger.exe
+C:\Users\User\Downloads\community-sdk-master\bin\win64\HeadsetInformationLogger.pdb
+C:\Users\User\Downloads\community-sdk-master\examples_basic\C#\HeadsetInformationLogger\obj\x64\Debug\HeadsetInformationLogger.csprojResolveAssemblyReference.cache
+C:\Users\User\Downloads\community-sdk-master\examples_basic\C#\HeadsetInformationLogger\obj\x64\Debug\HeadsetInformationLogger.exe
+C:\Users\User\Downloads\community-sdk-master\examples_basic\C#\HeadsetInformationLogger\obj\x64\Debug\HeadsetInformationLogger.pdb
