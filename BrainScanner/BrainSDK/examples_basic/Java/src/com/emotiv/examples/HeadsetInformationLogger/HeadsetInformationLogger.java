@@ -121,10 +121,7 @@ public class HeadsetInformationLogger {
 		PrintWriter output;
 		try {
 			output = new PrintWriter("C:/Users/User/Desktop/Junction/YabaDABaDo-SpotifyHack/WebInterface/web-api-auth-examples-master/authorization_code/public/BrainData/CurrentBrainOutput.txt", "UTF-8");
-			output.println("Excitement = " + String.format("%.0f",excitement*100));
-			output.println("Stress = " + String.format("%.0f",stress*100));
-			output.println("Relaxed = " + String.format("%.0f",relaxation*100));
-			output.println("Focus = " + String.format("%.0f",focus*100));
+			output.print(String.format("%.0f",excitement*100) + "," + String.format("%.0f",stress*100) + "," + String.format("%.0f",relaxation*100) + "," + String.format("%.0f",focus*100));
 			output.close();
 		} catch (FileNotFoundException | UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
