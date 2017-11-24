@@ -249,6 +249,9 @@
 
                   }
                   //console.log(tracks);
+                  $(document).ajaxStop(function(){
+                    ended(playlistValues, playlistIds, playlistIdOwner);
+                  })
 
                  
                   $('#login').hide();
@@ -331,4 +334,3 @@
 
   </body>
 </html>
-
