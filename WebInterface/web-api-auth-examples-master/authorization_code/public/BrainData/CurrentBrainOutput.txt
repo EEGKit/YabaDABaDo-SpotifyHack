@@ -1,4 +1,4 @@
-Excitement = 53
-Stress = 46
-Relaxed = 20
-Focus = 87
+Excitement = 47
+Stress = 51
+Relaxed = 23
+Focus = 71

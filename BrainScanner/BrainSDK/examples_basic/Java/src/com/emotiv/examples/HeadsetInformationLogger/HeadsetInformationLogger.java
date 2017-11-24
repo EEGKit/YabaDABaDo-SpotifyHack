@@ -89,10 +89,10 @@ public class HeadsetInformationLogger {
 						System.out.println("Relaxed = " + EmoState.INSTANCE.ES_AffectivGetMeditationScore(eState));
 						System.out.println("Focus = " + EmoState.INSTANCE.ES_AffectivGetEngagementBoredomScore(eState));
 						System.out.println(" ");
-						focus = (focus + EmoState.INSTANCE.ES_AffectivGetEngagementBoredomScore(eState))/2;
-						relaxation = (relaxation + EmoState.INSTANCE.ES_AffectivGetMeditationScore(eState))/2;
-						stress = (stress + EmoState.INSTANCE.ES_AffectivGetFrustrationScore(eState))/2;
-						excitement = (excitement + EmoState.INSTANCE.ES_AffectivGetExcitementShortTermScore(eState))/2;	
+						focus = (focus + EmoState.INSTANCE.ES_AffectivGetEngagementBoredomScore(eState));
+						relaxation = (relaxation + EmoState.INSTANCE.ES_AffectivGetMeditationScore(eState));
+						stress = (stress + EmoState.INSTANCE.ES_AffectivGetFrustrationScore(eState));
+						excitement = (excitement + EmoState.INSTANCE.ES_AffectivGetExcitementShortTermScore(eState));	
 					}
 				} else if (state != EdkErrorCode.EDK_NO_EVENT.ToInt()) {
 					System.out.println("Internal error in Emotiv Engine!");
@@ -100,6 +100,11 @@ public class HeadsetInformationLogger {
 				}
 			}
 		
+		excitement = excitement/10;
+		focus = focus/10;
+		relaxation = relaxation/10;
+		stress = stress/10;
+			
 		if (excitement < 0 || excitement > 1) {
 			excitement = 1/2;
 		}
@@ -115,7 +120,7 @@ public class HeadsetInformationLogger {
 
 		PrintWriter output;
 		try {
-			output = new PrintWriter("C:/Users/User/Desktop/Junction/YabaDABaDo-SpotifyHack/WebInterface/BrainData/CurrentBrainOutput.txt", "UTF-8");
+			output = new PrintWriter("C:/Users/User/Desktop/Junction/YabaDABaDo-SpotifyHack/WebInterface/web-api-auth-examples-master/authorization_code/public/BrainData/CurrentBrainOutput.txt", "UTF-8");
 			output.println("Excitement = " + String.format("%.0f",excitement*100));
 			output.println("Stress = " + String.format("%.0f",stress*100));
 			output.println("Relaxed = " + String.format("%.0f",relaxation*100));
