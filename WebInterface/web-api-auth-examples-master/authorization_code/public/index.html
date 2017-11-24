@@ -70,8 +70,7 @@
         function done()
         {
             var fileContents = this.response;
-            //console.log(fileContents);
-
+          
             // .toString() if converting to string
             arry = fileContents.split(",");
 
@@ -84,10 +83,13 @@
           xmlhttp.open("GET","/BrainData/CurrentBrainOutput.txt",true);
           xmlhttp.send();
 
+          var externalSave =0;
+        
     </script>
 
 
     <script>
+
       (function() {
 
         /**
@@ -188,14 +190,11 @@
                           },
                           success: function(response) {
 
-                              //console.log(response.items);
-
                               var string = "";
 
                               for(j = 0; j < response.items.length; j++)
                               {
 
-                                //console.log("Track ID = " + response.items[j].track.id);
                                 tracks[playlistCounter][j] = response.items[j].track.id;
                                 string = string + response.items[j].track.id + ",";
                               }
@@ -265,6 +264,7 @@
               $('#loggedin').hide();
           }
 
+
           document.getElementById('obtain-new-token').addEventListener('click', function() {
             $.ajax({
               url: '/refresh_token',
@@ -287,10 +287,12 @@
 
     <script>
         function ended(playlistValues, playlistIds, playlistIdOwner){
-                  //console.log(playlistValues);
             var returnPosition = calculateDiff(playlistValues);
-            console.log(playlistIds);
-            console.log(playlistIds[returnPosition]);
+            var ownerid = playlistIdOwner[returnPosition];
+            var playlistid = playlistIds[returnPosition];
+            console.log("return position = " + returnPosition);
+            console.log("Owner ID = " + ownerid);
+            console.log("Playlist Id = " + playlistid);
 
         }
 
@@ -323,7 +325,7 @@
             }
           }
 
-          console.log(position);
+
           return position;
         }
 
