@@ -254,6 +254,25 @@
         }
       })();
     </script>
+
+    <!-- Read in brain scanner file -->
+    <script>
+
+        function done()
+        {
+            var fileContents = this.response;
+            console.log(fileContents);
+        }
+
+        var xmlhttp;
+        xmlhttp=new XMLHttpRequest();
+        xmlhttp.addEventListener("load", done, false);
+        xmlhttp.open("GET","/BrainData/CurrentBrainOutput.txt",true);
+        xmlhttp.send();
+
+    </script>
+
+
   </body>
 </html>
 
