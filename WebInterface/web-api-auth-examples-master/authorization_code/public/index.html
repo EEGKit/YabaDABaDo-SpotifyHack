@@ -102,13 +102,79 @@
               refresh_token: refresh_token
             });
 
+            var amountOfPlaylists = 0;
+            var playlistCounter = 0;
+            var tracks = new Array();
             $.ajax({
-                url: 'https://api.spotify.com/v1/me',
+                type: 'GET',
+                dataType: "json",
+                url: 'https://api.spotify.com/v1/me/playlists',
                 headers: {
                   'Authorization': 'Bearer ' + access_token
                 },
                 success: function(response) {
-                  userProfilePlaceholder.innerHTML = userProfileTemplate(response);
+
+                  //////////////////////////////
+                  // Get list of playlist IDs //
+                  //////////////////////////////
+
+                  var playlistIds = [];
+                  var playlistIdOwner = [];
+
+                  for(i = 0; i < response.items.length; i++)
+                  {
+                    //Get playlist ID's and Owner ID's (Respectively)
+                    playlistIds = playlistIds.concat(response.items[i].id);
+                    playlistIdOwner = playlistIdOwner.concat(response.items[i].owner.id);
+
+                    amountOfPlaylists++;
+                    
+                  }
+
+                  playlistCounter = 0;
+
+                  // for(k = 0; k < response.items.length; k++)
+                  // {
+                  //   console.log("Playlist Owner = " + playlistIdOwner[k]);
+                  // }
+
+
+
+                  for(playlistCounter = 0; playlistCounter < amountOfPlaylists; playlistCounter++)
+                  {
+
+                    tracks[playlistCounter] = new Array();
+                    var pid = playlistIdOwner[playlistCounter];
+                    //console.log(playlistCounter);
+
+                    (function(playlistCounter){
+                      $.ajax({
+                          type: 'GET',
+                          dataType: "json",
+                          url: 'https://api.spotify.com/v1/users/' + playlistIdOwner[playlistCounter] + '/playlists/' + playlistIds[playlistCounter] + '/tracks',
+                          headers: {
+                            'Authorization': 'Bearer ' + access_token
+                          },
+                          success: function(response) {
+
+                              //console.log(response.items);
+
+                              for(j = 0; j < response.items.length; j++)
+                              {
+
+                                //console.log("Track ID = " + response.items[j].track.id);
+                                tracks[playlistCounter][j] = response.items[j].track.id;
+                              }
+
+
+                          }
+
+                      });
+                    })(playlistCounter);
+
+                  }
+                  console.log(tracks);
+
 
                   $('#login').hide();
                   $('#loggedin').show();
