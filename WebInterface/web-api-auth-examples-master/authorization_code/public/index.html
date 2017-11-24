@@ -62,6 +62,31 @@
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+    <!-- Read in brain scanner file -->
+    <script>
+
+        var arry = [];
+        function done()
+        {
+            var fileContents = this.response;
+            //console.log(fileContents);
+
+            // .toString() if converting to string
+            arry = fileContents.split(",");
+
+            //console.log(arry);
+
+        }
+        var xmlhttp;
+          xmlhttp=new XMLHttpRequest();
+          xmlhttp.addEventListener("load", done, false);
+          xmlhttp.open("GET","/BrainData/CurrentBrainOutput.txt",true);
+          xmlhttp.send();
+
+    </script>
+
+
     <script>
       (function() {
 
@@ -191,9 +216,9 @@
                                           success: function(response) {
 
                                               var danceability = 0;
+                                              var valence = 0; 
+                                              var acousticness = 0;                                     
                                               var energy = 0;
-                                              var acousticness = 0;                                        
-                                              var valence = 0;
 
                                               for(l = 0; l < response.audio_features.length; l++){
 
@@ -207,9 +232,9 @@
 
                                                 playlistValues[playlistCounter] = new Array(); 
                                                 playlistValues[playlistCounter][0] = ((danceability / (l + 1)) * 100).toFixed(0);
-                                                playlistValues[playlistCounter][1] = ((energy / (l + 1)) * 100).toFixed(0);
+                                                playlistValues[playlistCounter][1] = ((valence / (l + 1)) * 100).toFixed(0);
                                                 playlistValues[playlistCounter][2] = ((acousticness / (l + 1)) * 100).toFixed(0);
-                                                playlistValues[playlistCounter][3] = ((valence / (l + 1)) * 100).toFixed(0);
+                                                playlistValues[playlistCounter][3] = ((energy / (l + 1)) * 100).toFixed(0);
 
                                           }
 
@@ -225,9 +250,11 @@
 
                   }
                   //console.log(tracks);
+                  $(document).ajaxStop(function(){
+                    ended(playlistValues, playlistIds, playlistIdOwner);
+                  })
 
-                  console.log(playlistValues);
-
+                 
                   $('#login').hide();
                   $('#loggedin').show();
                 }
@@ -256,26 +283,49 @@
       })();
     </script>
 
-    <!-- Read in brain scanner file -->
+
+
     <script>
+        function ended(playlistValues, playlistIds, playlistIdOwner){
+                  //console.log(playlistValues);
+            var returnPosition = calculateDiff(playlistValues);
+            console.log(playlistIds);
+            console.log(playlistIds[returnPosition]);
 
-        function done()
-        {
-            var fileContents = this.response;
-            console.log(fileContents);
-
-            var arry = fileContents.split(",");
-
-            for(int )
-
-            console.log(arry);
         }
 
-        var xmlhttp;
-        xmlhttp=new XMLHttpRequest();
-        xmlhttp.addEventListener("load", done, false);
-        xmlhttp.open("GET","/BrainData/CurrentBrainOutput.txt",true);
-        xmlhttp.send();
+        function calculateDiff(playlistValues) {
+
+        var differences = [];
+
+        for(n = 0; n < 20; n++)
+          {
+            //console.log(playlistValues);
+            var counter = 0;
+            for(o = 0; o < 4; o++)
+            {
+              //console.log(playlistValues[n][o]);
+              counter = counter + (playlistValues[n][o] - arry[o]); 
+
+            }
+
+            differences[n] = Math.abs(counter);
+          }
+
+          var currentMin = 100;
+          var position=0;
+          for(p = 0; p < differences.length; p++)
+          {
+            if(differences[p] < currentMin)
+            {
+              currentMin = differences[p];
+              position = p;
+            }
+          }
+
+          console.log(position);
+          return position;
+        }
 
     </script>
 
