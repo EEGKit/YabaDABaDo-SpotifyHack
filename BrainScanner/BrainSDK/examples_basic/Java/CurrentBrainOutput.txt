@@ -1,0 +1,5 @@
+FINAL OUTPUT
+Excitement = 0.62361217
+Stress = 0.5758328
+Relaxed = 0.104047745
+Focus = 0.85075766
