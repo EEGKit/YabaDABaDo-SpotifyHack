@@ -105,6 +105,7 @@
             var amountOfPlaylists = 0;
             var playlistCounter = 0;
             var tracks = new Array();
+            var playlistValues = new Array();
             $.ajax({
                 type: 'GET',
                 dataType: "json",
@@ -189,15 +190,30 @@
                                           success: function(response) {
 
                                               var danceability = 0;
+                                              var energy = 0;
+                                              var acousticness = 0;                                        
+                                              var tempo = 0;
+                                              var instrumentalness = 0;
+                                              var loudness = 0;                                        
+                                              var valence = 0;
 
                                               for(l = 0; l < response.audio_features.length; l++){
 
                                                 danceability = (danceability + response.audio_features[l].danceability) / 2;
+                                                energy = (energy + response.audio_features[l].energy) / 2;
+                                                acousticness = (acousticness + response.audio_features[l].acousticness) / 2;
+                                                tempo = (tempo + response.audio_features[l].tempo) / 2;
+                                                instrumentalness = (instrumentalness + response.audio_features[l].instrumentalness) / 2;
+                                                loudness = (loudness + response.audio_features[l].loudness) / 2;
+                                                valence = (valence + response.audio_features[l].valence) / 2;
+
 
                                               }
-                                              console.log(danceability);
 
-//                                              console.log(response);
+                                                playlistValues[playlistCounter] = new Array(); 
+                                               playlistValues[playlistCounter][0] = danceability;
+                                                playlistValues[playlistCounter][1] = energy;
+
                                           }
 
                                       });
@@ -213,6 +229,7 @@
                   }
                   //console.log(tracks);
 
+                  console.log(playlistValues);
 
                   $('#login').hide();
                   $('#loggedin').show();
