@@ -102,10 +102,7 @@ var radarChart = new Chart(marksCanvas, {
         {
             var fileContents = this.response;
           
-            // .toString() if converting to string
             arry = fileContents.split(",");
-
-            //console.log(arry);
 
         }
         var xmlhttp;
@@ -161,10 +158,22 @@ var radarChart = new Chart(marksCanvas, {
               refresh_token: refresh_token
             });
 
+            ////////////////////////////////////////////////////////////
+            ////////////////// Start of Program ////////////////////////
+            ////////////////////////////////////////////////////////////
+
+            // Max playlist value
             var amountOfPlaylists = 0;
+
+            // Counter for looping through playlists
             var playlistCounter = 0;
+
+            // 2D Array to hold ALL track ID's for ALL playlists
             var tracks = new Array();
+
+            // 2D Array to hold ALL attribute average's for EACH playlist
             var playlistValues = new Array();
+
             $.ajax({
                 type: 'GET',
                 dataType: "json",
@@ -173,129 +182,147 @@ var radarChart = new Chart(marksCanvas, {
                   'Authorization': 'Bearer ' + access_token
                 },
                 success: function(response) {
-                  longtermplaylistdata = response;
-                  //////////////////////////////
-                  // Get list of playlist IDs //
-                  //////////////////////////////
 
-                  var playlistIds = [];
-                  var playlistIdOwner = [];
+                    // Cache initial AJAX request
+                    longtermplaylistdata = response;
 
-                  for(i = 0; i < response.items.length; i++)
-                  {
-                    //Get playlist ID's and Owner ID's (Respectively)
-                    playlistIds = playlistIds.concat(response.items[i].id);
-                    playlistIdOwner = playlistIdOwner.concat(response.items[i].owner.id);
+                    ////////////////////////////////////////////////////////////
+                    //////////////// Get list of Playlist ID's /////////////////
+                    ////////////////////////////////////////////////////////////
 
-                    amountOfPlaylists++;
-                    
-                  }
+                    // Array of all playlist ID's for current user
+                    var playlistIds = [];
 
-                  playlistCounter = 0;
+                    // Array of all playlist Owner's for current user
+                    var playlistIdOwner = [];
 
-                  // for(k = 0; k < response.items.length; k++)
-                  // {
-                  //   console.log("Playlist Owner = " + playlistIdOwner[k]);
-                  // }
+                    // Loop through ALL playlists to get ALL playlist ID's and Owner's
+                    for(i = 0; i < response.items.length; i++)
+                    {
+                      playlistIds = playlistIds.concat(response.items[i].id);
+                      playlistIdOwner = playlistIdOwner.concat(response.items[i].owner.id);
 
+                      // Increment total playlists counter
+                      amountOfPlaylists++;
+                    }
 
 
-                  for(playlistCounter = 0; playlistCounter < amountOfPlaylists; playlistCounter++)
-                  {
+                    ////////////////////////////////////////////////////////////
+                    ////////////////// Get list of Track ID's //////////////////
+                    ////////////////////////////////////////////////////////////
 
-                    tracks[playlistCounter] = new Array();
-                    var pid = playlistIdOwner[playlistCounter];
-                    //console.log(playlistCounter);
+                    // Counter for current playlist
+                    playlistCounter = 0;
 
-                  //////////////////////////////
-                  /// Get list of Track IDs ///
-                  //////////////////////////////
+                    // Loop through playlists to retrieve all track ID's for a playlist
+                    for(playlistCounter = 0; playlistCounter < amountOfPlaylists; playlistCounter++)
+                    {
 
-                    (function(playlistCounter){
-                      $.ajax({
-                          type: 'GET',
-                          dataType: "json",
-                          url: 'https://api.spotify.com/v1/users/' + playlistIdOwner[playlistCounter] + '/playlists/' + playlistIds[playlistCounter] + '/tracks',
-                          headers: {
-                            'Authorization': 'Bearer ' + access_token
-                          },
-                          success: function(response) {
+                      // Initialise 2D array for holding ALL track ID's for ALL playlists
+                      tracks[playlistCounter] = new Array();
 
-                              var string = "";
+                      (function(playlistCounter){
 
-                              for(j = 0; j < response.items.length; j++)
-                              {
+                        $.ajax({
+                            type: 'GET',
+                            dataType: "json",
+                            url: 'https://api.spotify.com/v1/users/' + playlistIdOwner[playlistCounter] + '/playlists/' + playlistIds[playlistCounter] + '/tracks',
+                            headers: {
+                              'Authorization': 'Bearer ' + access_token
+                            },
+                            success: function(response) {
 
-                                tracks[playlistCounter][j] = response.items[j].track.id;
-                                string = string + response.items[j].track.id + ",";
-                              }
+                                // Variable holding list of concatenated track ID's (For multi-track audio analysis API call)
+                                var string = "";
 
+                                // Loop through ALL tracks to retrieve ALL track ID's and concatenate them into a string
+                                for(j = 0; j < response.items.length; j++)
+                                {
 
-                              //////////////////////////////////////
-                              // Get audio analysis of each track //
-                              //////////////////////////////////////
+                                  // Retrieve a track ID for each track in the playlist's
+                                  tracks[playlistCounter][j] = response.items[j].track.id;
 
-                              (function(string){
-                                  $.ajax({
-                                          type: 'GET',
-                                          dataType: "json",
-                                          url: 'https://api.spotify.com/v1/audio-features?ids=' + string,
-                                          headers: {
-                                            'Authorization': 'Bearer ' + access_token
-                                          },
-                                          success: function(response) {
-
-                                              var danceability = 0;
-                                              var valence = 0; 
-                                              var acousticness = 0;                                     
-                                              var energy = 0;
-
-                                              for(l = 0; l < response.audio_features.length; l++){
-
-                                                danceability = (danceability + response.audio_features[l].danceability);
-                                                energy = (energy + response.audio_features[l].energy);
-                                                acousticness = (acousticness + response.audio_features[l].acousticness);
-                                                valence = (valence + response.audio_features[l].valence);
+                                  // Concatenate all track ID's for a single playlist into a single string
+                                  string = string + response.items[j].track.id + ",";
+                                }
 
 
-                                              }
+                                //////////////////////////////////////
+                                // Get audio analysis of each track //
+                                //////////////////////////////////////
 
+                                (function(string){
+                                    $.ajax({
+                                            type: 'GET',
+                                            dataType: "json",
+                                            url: 'https://api.spotify.com/v1/audio-features?ids=' + string,
+                                            headers: {
+                                              'Authorization': 'Bearer ' + access_token
+                                            },
+                                            success: function(response) {
+
+                                                // Initialise variables holding audio analysis attributes of a playlist 
+                                                var danceability = 0;
+                                                var valence = 0; 
+                                                var acousticness = 0;                                     
+                                                var energy = 0;
+
+                                                // Loop through ALL tracks in a playlist and calculate total score for each attribute
+                                                for(l = 0; l < response.audio_features.length; l++){
+
+                                                  danceability = (danceability + response.audio_features[l].danceability);
+                                                  energy = (energy + response.audio_features[l].energy);
+                                                  acousticness = (acousticness + response.audio_features[l].acousticness);
+                                                  valence = (valence + response.audio_features[l].valence);
+
+
+                                                }
+
+                                                // Initialise 2D array to hold audio analysis average for each playlist
                                                 playlistValues[playlistCounter] = new Array(); 
+
+                                                // Assign audio analysis average for EACH playlist
                                                 playlistValues[playlistCounter][0] = ((danceability / (l + 1)) * 100).toFixed(0);
                                                 playlistValues[playlistCounter][1] = ((valence / (l + 1)) * 100).toFixed(0);
                                                 playlistValues[playlistCounter][2] = ((acousticness / (l + 1)) * 100).toFixed(0);
                                                 playlistValues[playlistCounter][3] = ((energy / (l + 1)) * 100).toFixed(0);
 
-                                          }
+                                            }
 
-                                      });
-                              })(string);
+                                    });
 
+                                })(string);
 
+                            }
 
-                          }
+                        });
 
-                      });
-                    })(playlistCounter);
+                      })(playlistCounter);
 
                   }
-                  //console.log(tracks);
+
+                  // if ALL AJAX requests have STOPPED - find position of best-matched playlist
                   $(document).ajaxStop(function(){
                     ended(playlistValues, playlistIds, playlistIdOwner);
                   })
 
-                 
+                  // If logged in - Load logged in screen
                   $('#login').hide();
                   $('#loggedin').show();
+
                 }
+
             });
+
           } else {
-              // render initial screen
+
+              // If not logged in - load initial login screen
               $('#login').show();
               $('#loggedin').hide();
+
           }
 
-
+          // When 'refresh-token' button is pressed, refresh the token
           document.getElementById('obtain-new-token').addEventListener('click', function() {
             $.ajax({
               url: '/refresh_token',
@@ -303,7 +330,11 @@ var radarChart = new Chart(marksCanvas, {
                 'refresh_token': refresh_token
               }
             }).done(function(data) {
+
+              // Retrieve the access token
               access_token = data.access_token;
+
+              // Fill the authorization templated with refresh and access token
               oauthPlaceholder.innerHTML = oauthTemplate({
                 access_token: access_token,
                 refresh_token: refresh_token
@@ -317,47 +348,86 @@ var radarChart = new Chart(marksCanvas, {
 
 
     <script>
+
+       // Function to get position of best matches playlist (and details)
         function ended(playlistValues, playlistIds, playlistIdOwner){
-            var returnPosition = calculateDiff(playlistValues);
+
+            // Get index of best playlist
+            var returnPosition = calculateDiff(playlistValues, playlistIds);
+
+            // Get owner ID of best playlist
             var ownerid = playlistIdOwner[returnPosition];
+
+            // Get playlist ID of best playlist
             var playlistid = playlistIds[returnPosition];
+
             console.log("return position = " + returnPosition);
             console.log("Owner ID = " + ownerid);
             console.log("Playlist Id = " + playlistid);
             console.log(longtermplaylistdata);
         }
 
-        function calculateDiff(playlistValues) {
 
-        var differences = [];
+        // Function to get difference between PLAYLIST DATA and BRAIN DATA
+        function calculateDiff(playlistValues, playlistIds) {
 
-        for(n = 0; n < 20; n++)
-          {
-            //console.log(playlistValues);
-            var counter = 0;
-            for(o = 0; o < 4; o++)
-            {
-              //console.log(playlistValues[n][o]);
-              counter = counter + (playlistValues[n][o] - arry[o]); 
+            // Array holding difference values for each playlist
+            var differences = [];
 
-            }
+            var sortedListOfIndex = [];
 
-            differences[n] = Math.abs(counter);
-          }
+            // Loop through ALL playlists
+            for(n = 0; n < 20; n++)
+              {
 
-          var currentMin = 100;
-          var position=0;
-          for(p = 0; p < differences.length; p++)
-          {
-            if(differences[p] < currentMin)
-            {
-              currentMin = differences[p];
-              position = p;
-            }
-          }
+                var counter = 0;
+
+                // Loop through ALL attributes for EACH playlistS
+                for(o = 0; o < 4; o++)
+                {
+
+                    // Subtract playlist audio analysis attributes with brain data
+                    counter = counter + (playlistValues[n][o] - arry[o]); 
+
+                }
+
+                // Calculate absolute values for playlist difference values
+                differences[n] = Math.abs(counter);
+              }
+
+              // Current minimim for findMin() algorithm
+              var currentMin = 100;
+
+              // Position of current best playlist
+              var position=0;
+
+              var counter = 0;
+              var positionTemp = 0;
+
+              // Loop through ALL playlist difference values
+              for(p = 0; p < differences.length; p++)
+              {
+
+                  // If playlist difference value is smaller than current minimum
+                  if(differences[p] < currentMin)
+                  {
+
+                      // Set new minimum value
+                      currentMin = differences[p];
+
+                      // Set new minimum index value
+                      position = p;
+
+                  }
 
 
-          return position;
+
+              }
+
+
+
+              // Return index of best playlist
+              return position;
         }
 
     </script>
