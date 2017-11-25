@@ -38,8 +38,8 @@
             </div>
           </div>
           <div class="col-md-8">
-            <h2>Playlist Name </h2>
-            <h3>Sadly, there is no description for this playlist, but we're sure it's awesome!</h3>
+            <h2><span id="bestmatchPLName"> Hold on... The iccle gremlins are at work... </span> </h2>
+            <h3><span id="bestmatchPLDesc">  </span></h3>
           </div>
         </div>
         <div class="clearfix"></div>
@@ -55,22 +55,90 @@
     <div class="col-md-6">
       <div class="alternatives">
         <h2>These playlists are in order of closest to your current mood</h2>
-        <div class="playlistbox">
+        
+        <div class="playlistbox" id="box1">
           <div class="col-md-3">
            <img class="pbimg"  src="images/placeholder.jpg">
           </div>
           <div class="col-md-7">
-            <h3>Playlist Name</h3>
-            <h4 class="white">Sadly, there is no description for this playlist, but we're sure it's awesome!</h4>
-            <h4>Energy: 65%</h4>
-            <h4>Danceability: 65%</h4>
-            <h4>Acousticness: 65%</h4>
-            <h4>Valence: 65%</h4>
+            <h3 id="match1Name">Hold on...</h3>
+            <h4 class="white" id="match1Desc">Sadly, there is no description for this playlist, but we're sure it's awesome!</h4>
+            <h4>Danceability: <span id="match1Value1"> Calculating... </span></h4>
+            <h4>Valence: <span id="match1Value1"> Calculating... </span></h4>
+            <h4>Acousticness: <span id="match1Value1"> Calculating... </span></h4>
+            <h4>Energy: <span id="match1Value1"> Calculating... </span></h4>
           </div>
           <div class="col-md-2 checkitdiv">
-            <button class="checkit">Check it out!</button>
+            <a href="/">
+              <button class="checkit">Check it out!</button>
+            </a>
           </div>
         </div>
+
+
+        <div class="playlistbox" id="box1">
+          <div class="col-md-3">
+           <img class="pbimg"  src="images/placeholder.jpg">
+          </div>
+          <div class="col-md-7">
+            <h3 id="match2Name">Hold on...</h3>
+            <h4 class="white" id="match2Desc">Sadly, there is no description for this playlist, but we're sure it's awesome!</h4>
+            <h4>Danceability: <span id="match2Value1"> Calculating... </span></h4>
+            <h4>Valence: <span id="match2Value1"> Calculating... </span></h4>
+            <h4>Acousticness: <span id="match2Value1"> Calculating... </span></h4>
+            <h4>Energy: <span id="match2Value1"> Calculating... </span></h4>
+          </div>
+          <div class="col-md-2 checkitdiv">
+            <a href="/">
+              <button class="checkit">Check it out!</button>
+            </a>
+          </div>
+        </div>
+
+
+
+        <div class="playlistbox" id="box1">
+          <div class="col-md-3">
+           <img class="pbimg"  src="images/placeholder.jpg">
+          </div>
+          <div class="col-md-7">
+            <h3 id="match3Name">Hold on...</h3>
+            <h4 class="white" id="match3Desc">Sadly, there is no description for this playlist, but we're sure it's awesome!</h4>
+            <h4>Danceability: <span id="match3Value1"> Calculating... </span></h4>
+            <h4>Valence: <span id="match3Value1"> Calculating... </span></h4>
+            <h4>Acousticness: <span id="match3Value1"> Calculating... </span></h4>
+            <h4>Energy: <span id="match3Value1"> Calculating... </span></h4>
+          </div>
+          <div class="col-md-2 checkitdiv">
+            <a href="/">
+              <button class="checkit">Check it out!</button>
+            </a>
+          </div>
+        </div>
+
+
+
+        <div class="playlistbox" id="box1">
+          <div class="col-md-3">
+           <img class="pbimg"  src="images/placeholder.jpg">
+          </div>
+          <div class="col-md-7">
+            <h3 id="match4Name">Hold on...</h3>
+            <h4 class="white" id="match1Desc">Sadly, there is no description for this playlist, but we're sure it's awesome!</h4>
+            <h4>Danceability: <span id="match4Value1"> Calculating... </span></h4>
+            <h4>Valence: <span id="match4Value1"> Calculating... </span></h4>
+            <h4>Acousticness: <span id="match4Value1"> Calculating... </span></h4>
+            <h4>Energy: <span id="match4Value1"> Calculating... </span></h4>
+          </div>
+          <div class="col-md-2 checkitdiv">
+            <a href="/">
+              <button class="checkit">Check it out!</button>
+            </a>
+          </div>
+        </div>
+      
+        
+
       </div>
     </div>
   </section>
@@ -364,7 +432,7 @@
 
                   // If logged in - Load logged in screen
                   $('#login').hide();
-                  $('#loggedin').show();
+                  //$('#loggedin').show();
 
                 }
 
@@ -430,6 +498,16 @@
 
 
             document.getElementById("bestmatchpl").innerHTML = playlistid[0];
+            document.getElementById("bestmatchPLName").innerHTML = playlistid[0];
+            document.getElementById("bestmatchPLDesc").innerHTML = playlistid[0];
+            document.getElementById("match1Name").innerHTML = playlistid[0];
+            document.getElementById("match1Desc").innerHTML = playlistid[0];
+            document.getElementById("match1Value1").innerHTML = playlistid[0];
+            document.getElementById("match1Value2").innerHTML = playlistid[0];
+            document.getElementById("match1Value3").innerHTML = playlistid[0];
+            document.getElementById("match1Value4").innerHTML = playlistid[0];
+
+                        
 
             console.log("return position = " + returnPosition);
             console.log("Owner ID = " + ownerid);
