@@ -74,7 +74,7 @@ body {
 	min-width: 100%;
 	min-height: 90%;
 	height: 90%;
-	border-top: 1px rgb(24, 24, 24) solid;
+	/*border-top: 1px rgb(24, 24, 24) solid;*/
 }
 
 .bestmatch{
@@ -137,6 +137,12 @@ h3.middle{
 
  	
  }
+
+#img0 img{
+	height: 300px;
+	margin-top: -10px;
+	margin-bottom: 10px;
+}
 
 #img1 img {
 	height: 200px;
