@@ -74,7 +74,7 @@
             <h4>Acousticness: <span id="BMValue3"> Calculating... </span></h4>
             <h4>Energy: <span id="BMValue4"> Calculating... </span></h4>
             <div class="col-md-12">
-                <a href="/" id="checkit1" class="btn btn-primary" target="_blank">
+                <a id="checkit1" class="btn btn-primary" target="_blank">
                     Check it out!
                 </a>
             </div>
@@ -150,7 +150,7 @@
             <h4>Energy: <span id="match3Value4"> Calculating... </span></h4>
           </div>
           <div class="col-md-2 checkitdiv">
-            <a href="/" id="checkit4" target="_blank">
+            <a id="checkit4" target="_blank">
               <button class="checkit">Check it out!</button>
             </a>
           </div>
@@ -279,6 +279,9 @@
 
     <!-- Read in brain scanner file -->
     <script>
+
+        var runOnce = false;
+
         var longtermplaylistdata = null;
         var arry = [];
         function done()
@@ -600,83 +603,92 @@
 
                 //console.log(longtermplaylistdata);
 
+            if (runOnce == false){
             
-            document.getElementById("bestmatchpl").innerHTML = topFourSingle[0][0];
-            document.getElementById("bestmatchPLName").innerHTML = topFourSingle[0][0];
-            document.getElementById("matchOwner").innerHTML = "Curated by " + topFourSingle[0][4];
+              document.getElementById("bestmatchpl").innerHTML = topFourSingle[0][0];
+              document.getElementById("bestmatchPLName").innerHTML = topFourSingle[0][0];
+              document.getElementById("matchOwner").innerHTML = "Curated by " + topFourSingle[0][4];
+              
+              document.getElementById("bestmatchPLDesc").innerHTML = topFourSingle[0][3] + " tracks";
+              document.getElementById("BMValue1").innerHTML = playlistValues[returnPosition[0]][0] + "%";
+              document.getElementById("BMValue2").innerHTML = playlistValues[returnPosition[0]][1] + "%";
+              document.getElementById("BMValue3").innerHTML = playlistValues[returnPosition[0]][2] + "%";
+              document.getElementById("BMValue4").innerHTML = playlistValues[returnPosition[0]][3] + "%";
+
+              var img = document.createElement("img");
+              img.src = topFourSingle[0][2];
+
+              var src = document.getElementById("img0");
+              src.appendChild(img);
+
+
+              document.getElementById("match1Name").innerHTML = topFourSingle[1][0];
+              document.getElementById("match1Desc").innerHTML = topFourSingle[1][3] + " tracks";
+              document.getElementById("match1Owner").innerHTML = "Curated by " + topFourSingle[1][4];
+              document.getElementById("match1Value1").innerHTML = playlistValues[returnPosition[1]][0] + "%";
+              document.getElementById("match1Value2").innerHTML = playlistValues[returnPosition[1]][1] + "%";
+              document.getElementById("match1Value3").innerHTML = playlistValues[returnPosition[1]][2] + "%";
+              document.getElementById("match1Value4").innerHTML = playlistValues[returnPosition[1]][3] + "%";
+              //console.log(topFourSingle[1][2]);
+
+              if (!img1){
+               var img1 = document.createElement("img");
+             
+                img1.id = "img1id";
+                img1.src = topFourSingle[1][2];
+                var src1 = document.getElementById("img1");
+                src1.appendChild(img1);
+              }
             
-            document.getElementById("bestmatchPLDesc").innerHTML = topFourSingle[0][3] + " tracks";
-            document.getElementById("BMValue1").innerHTML = playlistValues[returnPosition[0]][0] + "%";
-            document.getElementById("BMValue2").innerHTML = playlistValues[returnPosition[0]][1] + "%";
-            document.getElementById("BMValue3").innerHTML = playlistValues[returnPosition[0]][2] + "%";
-            document.getElementById("BMValue4").innerHTML = playlistValues[returnPosition[0]][3] + "%";
 
-            var img = document.createElement("img");
-            img.src = topFourSingle[0][2];
+              document.getElementById("match2Name").innerHTML = topFourSingle[2][0];
+              document.getElementById("match2Desc").innerHTML = topFourSingle[2][3] + " tracks";
+              document.getElementById("match2Owner").innerHTML = "Curated by " + topFourSingle[2][4];
+              document.getElementById("match2Value1").innerHTML = playlistValues[returnPosition[2]][0] + "%";
+              document.getElementById("match2Value2").innerHTML = playlistValues[returnPosition[2]][1] + "%";
+              document.getElementById("match2Value3").innerHTML = playlistValues[returnPosition[2]][2] + "%";
+              document.getElementById("match2Value4").innerHTML = playlistValues[returnPosition[2]][3] + "%";
+              var img = document.createElement("img");
+              img.src = topFourSingle[2][2];
 
-            var src = document.getElementById("img0");
-            src.appendChild(img);
+              var src = document.getElementById("img2");
+              src.appendChild(img);
 
-            document.getElementById("match1Name").innerHTML = topFourSingle[1][0];
-            document.getElementById("match1Desc").innerHTML = topFourSingle[1][3] + " tracks";
-            document.getElementById("match1Owner").innerHTML = "Curated by " + topFourSingle[1][4];
-            document.getElementById("match1Value1").innerHTML = playlistValues[returnPosition[1]][0] + "%";
-            document.getElementById("match1Value2").innerHTML = playlistValues[returnPosition[1]][1] + "%";
-            document.getElementById("match1Value3").innerHTML = playlistValues[returnPosition[1]][2] + "%";
-            document.getElementById("match1Value4").innerHTML = playlistValues[returnPosition[1]][3] + "%";
-            //console.log(topFourSingle[1][2]);
-            var img1 = document.createElement("img");
-            img1.src = topFourSingle[1][2];
+              document.getElementById("match3Name").innerHTML = topFourSingle[3][0];
+              document.getElementById("match3Desc").innerHTML = topFourSingle[3][3] + " tracks";
+              document.getElementById("match3Owner").innerHTML = "Curated by " + topFourSingle[3][4];
+              document.getElementById("match3Value1").innerHTML = playlistValues[returnPosition[3]][0] + "%";
+              document.getElementById("match3Value2").innerHTML = playlistValues[returnPosition[3]][1] + "%";
+              document.getElementById("match3Value3").innerHTML = playlistValues[returnPosition[3]][2] + "%";
+              document.getElementById("match3Value4").innerHTML = playlistValues[returnPosition[3]][3] + "%";
+              var img = document.createElement("img");
+              img.src = topFourSingle[3][2];
 
-            var src1 = document.getElementById("img1");
-            src1.appendChild(img1);
+              var src = document.getElementById("img3");
+              src.appendChild(img);
 
+              document.getElementById("match4Name").innerHTML = topFourSingle[4][0];
+              document.getElementById("match4Desc").innerHTML = topFourSingle[4][3] + " tracks";
+              document.getElementById("match4Owner").innerHTML = "Curated by " + topFourSingle[4][4];
+              document.getElementById("match4Value1").innerHTML = playlistValues[returnPosition[4]][0] + "%";
+              document.getElementById("match4Value2").innerHTML = playlistValues[returnPosition[4]][1] + "%";
+              document.getElementById("match4Value3").innerHTML = playlistValues[returnPosition[4]][2] + "%";
+              document.getElementById("match4Value4").innerHTML = playlistValues[returnPosition[4]][3] + "%";
 
-            document.getElementById("match2Name").innerHTML = topFourSingle[2][0];
-            document.getElementById("match2Desc").innerHTML = topFourSingle[2][3] + " tracks";
-            document.getElementById("match2Owner").innerHTML = "Curated by " + topFourSingle[2][4];
-            document.getElementById("match2Value1").innerHTML = playlistValues[returnPosition[2]][0] + "%";
-            document.getElementById("match2Value2").innerHTML = playlistValues[returnPosition[2]][1] + "%";
-            document.getElementById("match2Value3").innerHTML = playlistValues[returnPosition[2]][2] + "%";
-            document.getElementById("match2Value4").innerHTML = playlistValues[returnPosition[2]][3] + "%";
-            var img = document.createElement("img");
-            img.src = topFourSingle[2][2];
+              var img = document.createElement("img");
+              img.src = topFourSingle[4][2];
 
-            var src = document.getElementById("img2");
-            src.appendChild(img);
+              var src = document.getElementById("img4");
+              src.appendChild(img);
 
-            document.getElementById("match3Name").innerHTML = topFourSingle[3][0];
-            document.getElementById("match3Desc").innerHTML = topFourSingle[3][3] + " tracks";
-            document.getElementById("match3Owner").innerHTML = "Curated by " + topFourSingle[3][4];
-            document.getElementById("match3Value1").innerHTML = playlistValues[returnPosition[3]][0] + "%";
-            document.getElementById("match3Value2").innerHTML = playlistValues[returnPosition[3]][1] + "%";
-            document.getElementById("match3Value3").innerHTML = playlistValues[returnPosition[3]][2] + "%";
-            document.getElementById("match3Value4").innerHTML = playlistValues[returnPosition[3]][3] + "%";
-            var img = document.createElement("img");
-            img.src = topFourSingle[3][2];
+              runOnce = true;
+            }
 
-            var src = document.getElementById("img3");
-            src.appendChild(img);
-
-            document.getElementById("match4Name").innerHTML = topFourSingle[4][0];
-            document.getElementById("match4Desc").innerHTML = topFourSingle[4][3] + " tracks";
-            document.getElementById("match4Owner").innerHTML = "Curated by " + topFourSingle[4][4];
-            document.getElementById("match4Value1").innerHTML = playlistValues[returnPosition[4]][0] + "%";
-            document.getElementById("match4Value2").innerHTML = playlistValues[returnPosition[4]][1] + "%";
-            document.getElementById("match4Value3").innerHTML = playlistValues[returnPosition[4]][2] + "%";
-            document.getElementById("match4Value4").innerHTML = playlistValues[returnPosition[4]][3] + "%";
-
-            var img = document.createElement("img");
-            img.src = topFourSingle[4][2];
-
-            var src = document.getElementById("img4");
-            src.appendChild(img);
-
-            document.getElementById("checkit1").href=topFourSingle[0][1]; 
-            document.getElementById("checkit2").href=topFourSingle[1][1]; 
-            document.getElementById("checkit3").href=topFourSingle[2][1]; 
-            document.getElementById("checkit4").href=topFourSingle[3][1]; 
-            document.getElementById("checkit5").href=topFourSingle[4][1]; 
+            // document.getElementById("checkit1").href=topFourSingle[0][1]; 
+            // document.getElementById("checkit2").href=topFourSingle[1][1]; 
+            // document.getElementById("checkit3").href=topFourSingle[2][1]; 
+            // document.getElementById("checkit4").href=topFourSingle[3][1]; 
+            // document.getElementById("checkit5").href=topFourSingle[4][1]; 
 
             var checkit1 = document.getElementById("checkit1");
 
@@ -702,17 +714,17 @@
         function play(uri)
         {
 
-            function getHashParams() {
-            var hashParams = {};
-            var e, r = /([^&;=]+)=?([^&;]*)/g,
-                q = window.location.hash.substring(1);
-            while ( e = r.exec(q)) {
-               hashParams[e[1]] = decodeURIComponent(e[2]);
-            }
-            return hashParams;
-             }
+           //  function getHashParams() {
+           //  var hashParams = {};
+           //  var e, r = /([^&;=]+)=?([^&;]*)/g,
+           //      q = window.location.hash.substring(1);
+           //  while ( e = r.exec(q)) {
+           //     hashParams[e[1]] = decodeURIComponent(e[2]);
+           //  }
+           //  return hashParams;
+           //   }
 
-           params = getHashParams();
+           // params = getHashParams();
 
            access_token = "BQCCurhgJT4tRkcudRofpJC2qqE4NYSubmMErg9qqBWx1ok0aOV4qtxcYV907g4p7DEzn4f0_Zo4nEYSa08mZfCs7";
 
@@ -724,11 +736,12 @@
               "authorization": "Bearer BQCCurhgJT4tRkcudRofpJC2qqE4NYSubmMErg9qqBWx1ok0aOV4qtxcYV907g4p7DEzn4f0_Zo4nEYSa08mZfCs7-eOdYIMsj3oeDdTuERfJJsGyuasboLTdDTbpFYNNFt1baRv8ZnWldLSjtI4vgxXgaSGC14hm6gQB7XasFISuRkzj-jsCEdHlkRSpUgNHBb3j4JaJvje76x2Z9qyvpp62o67AnZDO1nWp-T7hGQ"
 
             },
-            "data": "{\r\n  \"context_uri\": \"spotify:album:5ht7ItJgpBH7W6vJ5BqpPr\",\r\n  \"offset\": {\r\n    \"position\": 5\r\n  }\r\n}"
+            "data": '{"context_uri": "' + uri + '"}'
           }
 
           $.ajax(settings).done(function (response) {
             console.log(response);
+            //location.reload();
           });
 
         }
@@ -775,7 +788,6 @@
               currentMin = 100;
               for(p = 0; p < differences.length; p++)
               {
-
                   // If playlist difference value is smaller than current minimum
                   if(differences[p] < currentMin)
                   {
@@ -785,12 +797,7 @@
 
                       // Set new minimum index value
                       position[t] = p;
-
                   }
-
-
-
-
               }
               differences[position[t]] = 300;
             }
