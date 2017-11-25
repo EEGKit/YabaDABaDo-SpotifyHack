@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Coiny" rel="stylesheet">
+    <link rel="stylesheet" href="animate.css">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.js"></script>
     <style type="text/css">
@@ -28,7 +29,7 @@
   </section>
 
 
-    <div id="myModal" class="modal">
+    <div id="myModal" class="modal animated slideInUp">
       <div class="modal-content">
         <span class="close">&times;</span>
         <h2 class="modalText">Welcome to Brianify!</h2>
@@ -50,9 +51,9 @@
         <a href="/login" class="btn btn-primary middle">Log in with Spotify</a>
       </div>
     </div>
-
+<section id="full" class="">
   <div class="clearfix"></div>
-  <section class="main">
+  <section class="main animated zoomIn">
     <div class="col-md-6">
       <div class="bestmatch" id="best">
         <h2>Based on your current thoughts...It's a <span class="bold" id="bestmatchpl">(Hold on.....)</span> day!</h2>
@@ -178,7 +179,7 @@
       </div>
     </div>
   </section>
-
+</section>
   <script>
   Chart.defaults.global.defaultFontColor = "rgb(30, 215, 96)";
   function createChart(playlistValues, brainValues, position){
@@ -679,6 +680,9 @@
             console.log(topFourSingle);
 
 
+
+            var section = document.getElementById("full");
+            section.style.display = "block";
 
         }
 
