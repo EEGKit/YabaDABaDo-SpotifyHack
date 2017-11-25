@@ -108,7 +108,7 @@
             <h4>Energy: <span id="match1Value4"> Calculating... </span></h4>
           </div>
           <div class="col-md-2 checkitdiv">
-            <a href="/" id="checkit2" target="_blank">
+            <a id="checkit2" target="_blank">
               <button class="checkit">Check it out!</button>
             </a>
           </div>
@@ -129,7 +129,7 @@
             <h4>Energy: <span id="match2Value4"> Calculating... </span></h4>
           </div>
           <div class="col-md-2 checkitdiv">
-            <a href="/" id="checkit3" target="_blank">
+            <a id="checkit3" target="_blank">
               <button class="checkit">Check it out!</button>
             </a>
           </div>
@@ -171,7 +171,7 @@
             <h4>Energy: <span id="match4Value4"> Calculating... </span></h4>
           </div>
           <div class="col-md-2 checkitdiv">
-            <a href="/" id="checkit5" target="_blank">
+            <a id="checkit5" target="_blank">
               <button class="checkit">Check it out!</button>
             </a>
           </div>
@@ -690,6 +690,7 @@
             // document.getElementById("checkit4").href=topFourSingle[3][1]; 
             // document.getElementById("checkit5").href=topFourSingle[4][1]; 
 
+            // Play match 1
             var checkit1 = document.getElementById("checkit1");
 
             checkit1.onclick = function() {
@@ -697,6 +698,44 @@
               play(topFourSingle[0][5]);
 
             }
+
+            // Play match 2
+            var checkit2 = document.getElementById("checkit2");
+
+            checkit2.onclick = function() {
+                
+              play(topFourSingle[1][5]);
+
+            }
+
+            // Play match 3
+            var checkit3 = document.getElementById("checkit3");
+
+            checkit3.onclick = function() {
+                
+              play(topFourSingle[2][5]);
+
+            }
+
+            // Play match 4
+            var checkit4 = document.getElementById("checkit4");
+
+            checkit4.onclick = function() {
+                
+              play(topFourSingle[3][5]);
+
+            }
+
+            // Play match 5
+            var checkit5 = document.getElementById("checkit5");
+
+            checkit5.onclick = function() {
+                
+              play(topFourSingle[4][5]);
+
+            }
+
+
 
 
             //console.log(longtermplaylistdata);
