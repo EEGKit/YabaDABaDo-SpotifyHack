@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <meta http-equiv="refresh" content="45">
+    <meta http-equiv="refresh" content="25">
     <title>Example of the Authorization Code flow with Spotify</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
@@ -26,6 +26,31 @@
   <section class="header">
     <h1>Brainify</h1>
   </section>
+
+
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 class="modalText">Welcome to Brianify!</h2>
+        <h3 class="modalText">What is is</h3>
+        <p>
+          Brainify will suggest you playlists that reflect your current mood!
+        </p>
+        <h3 class="modalText">How it works</h3>
+        <p>
+          Brainify works by: <br>
+          Breaks down your brain’s EEG signals and maps them to emotions <br>
+          Retrieves your playlists and analyses them track-by-track, defining all emotional influences <br>
+          Returns your top 5 playlists to match your current mood
+        </p>
+        <h3 class="modalText">Getting started</h3>
+        <p>
+          Simply login below and we’ll do the rest for you!
+        </p>
+        <a href="/login" class="btn btn-primary middle">Log in with Spotify</a>
+      </div>
+    </div>
+
   <div class="clearfix"></div>
   <section class="main">
     <div class="col-md-6">
@@ -45,8 +70,8 @@
             <h4>Acousticness: <span id="BMValue3"> Calculating... </span></h4>
             <h4>Energy: <span id="BMValue4"> Calculating... </span></h4>
             <div class="col-md-12">
-                <a href="/" id="checkit1" target="_blank">
-                    <button class="checkit checkit2">Check it out!</button>
+                <a href="/" id="checkit1" class="btn btn-primary" target="_blank">
+                    Check it out!
                 </a>
             </div>
           </div>
@@ -157,7 +182,7 @@
   <script>
   function createChart(playlistValues, brainValues, position){
     var marksData = {
-      labels: ["Focus", "Relaxation", "Stress", "Excitement"],
+      labels: ["Excitement", "Stress", "Relaxation", "Focus"],
       datasets: [{
         label: "Playlist Output",
         backgroundColor: "rgba(200,0,0,0.5)",
@@ -186,7 +211,7 @@
 
     <div class="container">
       <div id="login">
-        <h1>This is an example of the Authorization Code flow</h1>
+        <!-- <h1>This is an example of the Authorization Code flow</h1> -->
         <a href="/login" class="btn btn-primary">Log in with Spotify</a>
       </div>
       <div id="loggedin">
@@ -198,6 +223,7 @@
       </div>
     </div>
 
+    <section class="hide">
     <script id="user-profile-template" type="text/x-handlebars-template">
       <h1>Logged in as {{display_name}}</h1>
       <div class="media">
@@ -225,6 +251,7 @@
         <dt>Refresh token</dt><dd class="text-overflow">{{refresh_token}}></dd>
       </dl>
     </script>
+    </section>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
@@ -287,6 +314,10 @@
           alert('There was an error during the authentication');
         } else {
           if (access_token) {
+
+            var modal = document.getElementById('myModal');
+            modal.style.display = "none";
+
             // render oauth info
             oauthPlaceholder.innerHTML = oauthTemplate({
               access_token: access_token,
@@ -702,6 +733,34 @@
 
     </script>
 
+
+    <script>
+      // Get the modal
+      var modal = document.getElementById('myModal');
+
+      // Get the button that opens the modal
+      var btn = document.getElementById("myBtn");
+
+      // Get the <span> element that closes the modal
+      var span = document.getElementsByClassName("close")[0];
+
+      // When the user clicks the button, open the modal 
+      //btn.onclick = function() {
+      //    modal.style.display = "block";
+      //}
+
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function() {
+          modal.style.display = "none";
+      }
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+          if (event.target == modal) {
+              modal.style.display = "none";
+          }
+      }
+      </script>
 
   </body>
 </html>
