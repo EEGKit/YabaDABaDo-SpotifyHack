@@ -121,10 +121,29 @@ h3.middle{
  	margin-top: 10px;
  }
 
+.imagebox{
+	height: 200px;
+}
+
  .pbimg{
  	padding: 5px;
  	height: 180px;
+
+ 	
  }
+
+#img1 img {
+	height: 200px;
+}
+#img2 img {
+	height: 200px;
+}
+#img3 img {
+	height: 200px;
+}
+#img4 img {
+	height: 200px;
+}
 
 .checkitdiv{
 	
