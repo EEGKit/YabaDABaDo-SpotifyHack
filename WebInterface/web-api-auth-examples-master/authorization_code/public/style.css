@@ -6,6 +6,10 @@ $sand: rgb(200, 200, 200);
 $white: rgb(255, 255, 255);
 $blue: #4688d7;*/
 
+html {
+	background-color: rgb(40,40,40);
+}
+
 h1 { 
 	font-family: 'Coiny';
 	font-size: 8.2rem;
@@ -169,4 +173,9 @@ button.checkit {
 	color: white;
 	font-family: 'Roboto';
 	margin-top: 50%;	
+}
+
+button.checkit2 {
+	margin-top: 5%;
+
 }
