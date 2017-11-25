@@ -71,7 +71,7 @@
             <h4>Energy: <span id="match1Value4"> Calculating... </span></h4>
           </div>
           <div class="col-md-2 checkitdiv">
-            <a href="/">
+            <a href="/" id="checkit2" target="_blank">
               <button class="checkit">Check it out!</button>
             </a>
           </div>
@@ -604,6 +604,10 @@
 
             var src = document.getElementById("img4");
             src.appendChild(img);
+
+            document.getElementById("checkit2").href=topFourSingle[1][1]; 
+
+
             //console.log(longtermplaylistdata);
             console.log(topFourSingle);
 
