@@ -4,6 +4,9 @@
     <meta http-equiv="refresh" content="45">
     <title>Example of the Authorization Code flow with Spotify</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.js"></script>
     <style type="text/css">
       #login, #loggedin {
         display: none;
@@ -19,34 +22,84 @@
 
   <body>
 
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.js"></script>   
-<canvas id="marksCanvas" width="100" height="100"></canvas>
-<script>
-var marksData = {
-  labels: ["English", "Maths", "Physics", "Chemistry", "Biology", "History"],
-  datasets: [{
-    label: "Student A",
-    backgroundColor: "rgba(200,0,0,0.2)",
-    data: [65, 75, 70, 80, 60, 80]
-  }, {
-    label: "Student B",
-    backgroundColor: "rgba(0,0,200,0.2)",
-    data: [54, 65, 60, 70, 70, 75]
-  }]
-};
- 
-var radarChart = new Chart(marksCanvas, {
-  type: 'radar',
-  data: marksData
-});
+  <section class="header">
+    <h1>Brainify</h1>
+  </section>
+  <div class="clearfix"></div>
+  <section class="main">
+    <div class="col-md-6">
+      <div class="bestmatch">
+        <h2>Based on your current thoughts...</h2>
+        <h2 class="middle">It's a <span class="bold">[playlist name]</span> day!</h2>
+        <div class="imagetitle">
+          <div class="col-md-4">
+            <div class="image">
+              <img id="image" src="images/placeholder.jpg">
+            </div>
+          </div>
+          <div class="col-md-8">
+            <h2>Playlist Name </h2>
+            <h3>Sadly, there is no description for this playlist, but we're sure it's awesome!</h3>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="how">
+          <h2>How did we figure this out?</h2>
+          <h3 class="middle">Your thoughts tell all... </h3>
+          <div class="radal">
+            <canvas id="marksCanvas" width="100" height="100"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="alternatives">
+        <h2>These playlists are in order of closest to your current mood</h2>
+        <div class="playlistbox">
+          <div class="col-md-3">
+           <img class="pbimg"  src="images/placeholder.jpg">
+          </div>
+          <div class="col-md-7">
+            <h3>Playlist Name</h3>
+            <h4 class="white">Sadly, there is no description for this playlist, but we're sure it's awesome!</h4>
+            <h4>Energy: 65%</h4>
+            <h4>Danceability: 65%</h4>
+            <h4>Acousticness: 65%</h4>
+            <h4>Valence: 65%</h4>
+          </div>
+          <div class="col-md-2 checkitdiv">
+            <button class="checkit">Check it out!</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-var radarChart = new Chart(marksCanvas, {
-    type: 'radar',
-    data: marksData,
-    options: chartOptions
-});
+  <script>
+    var marksData = {
+      labels: ["Focus", "Relaxation", "Stress", "Excitement"],
+      datasets: [{
+        label: "Brain Output",
+        backgroundColor: "rgba(200,0,0,0.2)",
+        data: [65, 64, 30, 20]
+      }, {
+        label: "Playlist Value",
+        backgroundColor: "rgba(0,0,200,0.2)",
+        data: [54, 65, 60, 70]
+      }]
+    };
+     
+    var radarChart = new Chart(marksCanvas, {
+      type: 'radar',
+      data: marksData
+    });
 
-</script> -->
+    var radarChart = new Chart(marksCanvas, {
+        type: 'radar',
+        data: marksData
+    });
+
+  </script> 
 
 
     <div class="container">
@@ -356,10 +409,21 @@ var radarChart = new Chart(marksCanvas, {
             var returnPosition = calculateDiff(playlistValues, playlistIds);
 
             // Get owner ID of best playlist
-            var ownerid = playlistIdOwner[returnPosition];
+            var ownerid = [];
+            ownerid[0] = playlistIdOwner[returnPosition[0]];
+            ownerid[1] = playlistIdOwner[returnPosition[1]];
+            ownerid[2] = playlistIdOwner[returnPosition[2]];
+            ownerid[3] = playlistIdOwner[returnPosition[3]];
+            ownerid[4] = playlistIdOwner[returnPosition[4]];
+
 
             // Get playlist ID of best playlist
-            var playlistid = playlistIds[returnPosition];
+            var playlistid = []; 
+            playlistid[0]=playlistIds[returnPosition[0]];
+            playlistid[1]=playlistIds[returnPosition[1]];
+            playlistid[2]=playlistIds[returnPosition[2]];
+            playlistid[3]=playlistIds[returnPosition[3]];
+            playlistid[4]=playlistIds[returnPosition[4]];
 
             console.log("return position = " + returnPosition);
             console.log("Owner ID = " + ownerid);
@@ -374,7 +438,7 @@ var radarChart = new Chart(marksCanvas, {
             // Array holding difference values for each playlist
             var differences = [];
 
-            var sortedPlaylistByDifference = [];
+            var sortedListOfIndex = [];
 
             // Loop through ALL playlists
             for(n = 0; n < 20; n++)
@@ -401,8 +465,11 @@ var radarChart = new Chart(marksCanvas, {
               // Position of current best playlist
               var position=[];
 
+              var counter = 0;
+              var positionTemp = 0;
+
               // Loop through ALL playlist difference values
-              for (t = 0; t <4; t++){
+              for (t = 0; t <5; t++){
               currentMin = 100;
               for(p = 0; p < differences.length; p++)
               {
@@ -419,7 +486,6 @@ var radarChart = new Chart(marksCanvas, {
 
                   }
 
-                  
 
 
 
@@ -437,4 +503,3 @@ var radarChart = new Chart(marksCanvas, {
 
   </body>
 </html>
-
