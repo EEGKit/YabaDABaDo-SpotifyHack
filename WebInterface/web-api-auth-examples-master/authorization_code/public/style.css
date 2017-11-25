@@ -6,7 +6,13 @@ $sand: rgb(200, 200, 200);
 $white: rgb(255, 255, 255);
 $blue: #4688d7;*/
 
-h1{
+h1 { 
+	font-family: 'Coiny';
+	font-size: 8.2rem;
+	margin:auto;
+ }
+
+h1, h5{
   	color: rgb(30, 215, 96);
 }
 
@@ -19,7 +25,7 @@ h2, h3 {
 	color: rgb(255, 255, 255);
 }
 
-h4, h5 {
+h4{
 	color:rgb(170, 170, 170);
 	margin: 0;
 }

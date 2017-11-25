@@ -5,6 +5,7 @@
     <title>Example of the Authorization Code flow with Spotify</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Coiny" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.js"></script>
     <style type="text/css">
@@ -61,7 +62,8 @@
             <div id="img1"></div>
           </div>
           <div class="col-md-7">
-            <h3 id="match1Name">Hold on...</h3>
+            <h3 id="match1Name">Hold on... </h3>
+            <h5 class="owner" id="match1Owner"></h5>
             <h4 class="white" id="match1Desc">Sadly, there is no description for this playlist, but we're sure it's awesome!</h4>
             <h4>Danceability: <span id="match1Value1"> Calculating... </span></h4>
             <h4>Valence: <span id="match1Value2"> Calculating... </span></h4>
@@ -82,6 +84,7 @@
           </div>
           <div class="col-md-7">
             <h3 id="match2Name">Hold on...</h3>
+            <h5 class="owner" id="match2Owner"></h5>
             <h4 class="white" id="match2Desc">Sadly, there is no description for this playlist, but we're sure it's awesome!</h4>
             <h4>Danceability: <span id="match2Value1"> Calculating... </span></h4>
             <h4>Valence: <span id="match2Value2"> Calculating... </span></h4>
@@ -102,6 +105,7 @@
           </div>
           <div class="col-md-7">
             <h3 id="match3Name">Hold on...</h3>
+            <h5 class="owner" id="match3Owner"></h5>
             <h4 class="white" id="match3Desc">Sadly, there is no description for this playlist, but we're sure it's awesome!</h4>
             <h4>Danceability: <span id="match3Value1"> Calculating... </span></h4>
             <h4>Valence: <span id="match3Value2"> Calculating... </span></h4>
@@ -122,6 +126,7 @@
           </div>
           <div class="col-md-7">
             <h3 id="match4Name">Hold on...</h3>
+            <h5 class="owner" id="match4Owner"></h5>
             <h4 class="white" id="match4Desc">Sadly, there is no description for this playlist, but we're sure it's awesome!</h4>
             <h4>Danceability: <span id="match4Value1"> Calculating... </span></h4>
             <h4>Valence: <span id="match4Value2"> Calculating... </span></h4>
@@ -545,9 +550,9 @@
             var src = document.getElementById("img0");
             src.appendChild(img);
 
-
             document.getElementById("match1Name").innerHTML = topFourSingle[1][0];
             document.getElementById("match1Desc").innerHTML = topFourSingle[1][3] + " tracks";
+            document.getElementById("match1Owner").innerHTML = "Curated by " + topFourSingle[1][4];
             document.getElementById("match1Value1").innerHTML = playlistValues[returnPosition[1]][0] + "%";
             document.getElementById("match1Value2").innerHTML = playlistValues[returnPosition[1]][1] + "%";
             document.getElementById("match1Value3").innerHTML = playlistValues[returnPosition[1]][2] + "%";
@@ -562,6 +567,7 @@
 
             document.getElementById("match2Name").innerHTML = topFourSingle[2][0];
             document.getElementById("match2Desc").innerHTML = topFourSingle[2][3] + " tracks";
+            document.getElementById("match2Owner").innerHTML = "Curated by " + topFourSingle[2][4];
             document.getElementById("match2Value1").innerHTML = playlistValues[returnPosition[2]][0] + "%";
             document.getElementById("match2Value2").innerHTML = playlistValues[returnPosition[2]][1] + "%";
             document.getElementById("match2Value3").innerHTML = playlistValues[returnPosition[2]][2] + "%";
@@ -574,6 +580,7 @@
 
             document.getElementById("match3Name").innerHTML = topFourSingle[3][0];
             document.getElementById("match3Desc").innerHTML = topFourSingle[3][3] + " tracks";
+            document.getElementById("match3Owner").innerHTML = "Curated by " + topFourSingle[3][4];
             document.getElementById("match3Value1").innerHTML = playlistValues[returnPosition[3]][0] + "%";
             document.getElementById("match3Value2").innerHTML = playlistValues[returnPosition[3]][1] + "%";
             document.getElementById("match3Value3").innerHTML = playlistValues[returnPosition[3]][2] + "%";
@@ -586,6 +593,7 @@
 
             document.getElementById("match4Name").innerHTML = topFourSingle[4][0];
             document.getElementById("match4Desc").innerHTML = topFourSingle[4][3] + " tracks";
+            document.getElementById("match4Owner").innerHTML = "Curated by " + topFourSingle[4][4];
             document.getElementById("match4Value1").innerHTML = playlistValues[returnPosition[4]][0] + "%";
             document.getElementById("match4Value2").innerHTML = playlistValues[returnPosition[4]][1] + "%";
             document.getElementById("match4Value3").innerHTML = playlistValues[returnPosition[4]][2] + "%";
