@@ -515,11 +515,24 @@
                         topFourSingle[r][1] = longtermplaylistdata.items[s].external_urls.spotify;
                         topFourSingle[r][2] = longtermplaylistdata.items[s].images[0].url;
                         topFourSingle[r][3] = longtermplaylistdata.items[s].tracks.total;
+
+                        if(longtermplaylistdata.items[s].owner.display_name != null) 
+                        { 
+                            topFourSingle[r][4] = longtermplaylistdata.items[s].owner.display_name; 
+                        } 
+                        else 
+                        { 
+                            topFourSingle[r][4] = longtermplaylistdata.items[s].owner.id; 
+                        } 
+
                     }
 
                 }
 
             }
+
+                console.log(topFourSingle);
+
 
             
             document.getElementById("bestmatchpl").innerHTML = topFourSingle[0][0];
