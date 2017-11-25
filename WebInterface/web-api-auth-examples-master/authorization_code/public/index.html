@@ -399,9 +399,11 @@ var radarChart = new Chart(marksCanvas, {
               var currentMin = 100;
 
               // Position of current best playlist
-              var position=0;
+              var position=[];
 
               // Loop through ALL playlist difference values
+              for (t = 0; t <4; t++){
+              currentMin = 100;
               for(p = 0; p < differences.length; p++)
               {
 
@@ -413,14 +415,18 @@ var radarChart = new Chart(marksCanvas, {
                       currentMin = differences[p];
 
                       // Set new minimum index value
-                      position = p;
+                      position[t] = p;
 
                   }
 
                   
 
 
+
               }
+              differences[position[t]] = 300;
+            }
+            console.log(differences);
 
               // Return index of best playlist
               return position;
