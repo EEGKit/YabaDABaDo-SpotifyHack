@@ -30,17 +30,20 @@
   <section class="main">
     <div class="col-md-6">
       <div class="bestmatch" id="best">
-        <h2>Based on your current thoughts...</h2>
-        <h2 class="middle">It's a <span class="bold" id="bestmatchpl">(Hold on.....)</span> day!</h2>
+        <h2>Based on your current thoughts...It's a <span class="bold" id="bestmatchpl">(Hold on.....)</span> day!</h2>
         <div class="imagetitle">
           <div class="col-md-4">
             <div class="image" id="img0">
-              <!-- <img id="image" src="images/placeholder.jpg"> -->
             </div>
           </div>
           <div class="col-md-8">
-            <h2><span id="bestmatchPLName"> Hold on... The iccle gremlins are at work... </span> </h2>
-            <h3><span id="bestmatchPLDesc">  </span></h3>
+            <h3><span id="bestmatchPLName"> Hold on... The iccle gremlins are at work... </span> </h3>
+            <h5 class="owner" id="matchOwner"></h5>
+            <h4 class="white"><span id="bestmatchPLDesc">  </span></h4>
+            <h4>Danceability: <span id="BMValue1"> Calculating... </span></h4>
+            <h4>Valence: <span id="BMValue2"> Calculating... </span></h4>
+            <h4>Acousticness: <span id="BMValue3"> Calculating... </span></h4>
+            <h4>Energy: <span id="BMValue4"> Calculating... </span></h4>
           </div>
         </div>
         <div class="clearfix"></div>
@@ -152,11 +155,11 @@
       labels: ["Focus", "Relaxation", "Stress", "Excitement"],
       datasets: [{
         label: "Playlist Output",
-        backgroundColor: "rgba(200,0,0,0.2)",
+        backgroundColor: "rgba(200,0,0,0.5)",
         data: [playlistValues[position[0]][0], playlistValues[position[0]][1], playlistValues[position[0]][2], playlistValues[position[0]][3]]
       }, {
         label: "Brain Value",
-        backgroundColor: "rgba(0,0,200,0.2)",
+        backgroundColor: "rgba(0,0,200,0.5)",
         data: [brainValues[0], brainValues[1], brainValues[2], brainValues[3]]
       }]
     };
@@ -542,7 +545,13 @@
             
             document.getElementById("bestmatchpl").innerHTML = topFourSingle[0][0];
             document.getElementById("bestmatchPLName").innerHTML = topFourSingle[0][0];
+            document.getElementById("matchOwner").innerHTML = "Curated by " + topFourSingle[0][4];
+            
             document.getElementById("bestmatchPLDesc").innerHTML = topFourSingle[0][3] + " tracks";
+            document.getElementById("BMValue1").innerHTML = playlistValues[returnPosition[0]][0] + "%";
+            document.getElementById("BMValue2").innerHTML = playlistValues[returnPosition[0]][1] + "%";
+            document.getElementById("BMValue3").innerHTML = playlistValues[returnPosition[0]][2] + "%";
+            document.getElementById("BMValue4").innerHTML = playlistValues[returnPosition[0]][3] + "%";
 
             var img = document.createElement("img");
             img.src = topFourSingle[0][2];
