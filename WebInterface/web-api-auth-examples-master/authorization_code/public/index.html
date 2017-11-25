@@ -28,9 +28,9 @@
   <div class="clearfix"></div>
   <section class="main">
     <div class="col-md-6">
-      <div class="bestmatch">
+      <div class="bestmatch" id="best">
         <h2>Based on your current thoughts...</h2>
-        <h2 class="middle">It's a <span class="bold">[playlist name]</span> day!</h2>
+        <h2 class="middle">It's a <span class="bold" id="bestmatchpl">(Hold on.....)</span> day!</h2>
         <div class="imagetitle">
           <div class="col-md-4">
             <div class="image">
@@ -76,16 +76,17 @@
   </section>
 
   <script>
+  function createChart(playlistValues, brainValues, position){
     var marksData = {
       labels: ["Focus", "Relaxation", "Stress", "Excitement"],
       datasets: [{
-        label: "Brain Output",
+        label: "Playlist Output",
         backgroundColor: "rgba(200,0,0,0.2)",
-        data: [65, 64, 30, 20]
+        data: [playlistValues[position[0]][0], playlistValues[position[0]][1], playlistValues[position[0]][2], playlistValues[position[0]][3]]
       }, {
-        label: "Playlist Value",
+        label: "Brain Value",
         backgroundColor: "rgba(0,0,200,0.2)",
-        data: [54, 65, 60, 70]
+        data: [brainValues[0], brainValues[1], brainValues[2], brainValues[3]]
       }]
     };
      
@@ -98,6 +99,8 @@
         type: 'radar',
         data: marksData
     });
+  }
+    
 
   </script> 
 
@@ -124,7 +127,7 @@
         </div>
         <div class="media-body">
           <dl class="dl-horizontal">
-            <dt>Display name</dt><dd class="clearfix">{{display_name}}</dd>
+            <dt>Display name</dt><dd class="clearfix">{{playlist0}}</dd>
             <dt>Id</dt><dd>{{id}}</dd>
             <dt>Email</dt><dd>{{email}}</dd>
             <dt>Spotify URI</dt><dd><a href="{{external_urls.spotify}}">{{external_urls.spotify}}</a></dd>
@@ -407,7 +410,7 @@
 
             // Get index of best playlist
             var returnPosition = calculateDiff(playlistValues, playlistIds);
-
+            createChart(playlistValues, arry, returnPosition);
             // Get owner ID of best playlist
             var ownerid = [];
             ownerid[0] = playlistIdOwner[returnPosition[0]];
@@ -424,6 +427,9 @@
             playlistid[2]=playlistIds[returnPosition[2]];
             playlistid[3]=playlistIds[returnPosition[3]];
             playlistid[4]=playlistIds[returnPosition[4]];
+
+
+            document.getElementById("bestmatchpl").innerHTML = playlistid[0];
 
             console.log("return position = " + returnPosition);
             console.log("Owner ID = " + ownerid);
