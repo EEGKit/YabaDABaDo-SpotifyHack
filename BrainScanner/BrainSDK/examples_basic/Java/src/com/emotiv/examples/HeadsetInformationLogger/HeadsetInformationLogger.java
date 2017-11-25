@@ -50,7 +50,7 @@ public class HeadsetInformationLogger {
 			while (count < 30000) {
 				state = Edk.INSTANCE.IEE_EngineGetNextEvent(eEvent);
 				try {
-					Thread.sleep(3000);
+					Thread.sleep(2000);
 					count = count + 3000;
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
