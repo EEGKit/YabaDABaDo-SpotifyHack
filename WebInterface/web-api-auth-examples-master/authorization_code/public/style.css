@@ -1,0 +1,130 @@
+/*$green: rgb(30, 215, 96);
+$light-black: rgb(40, 40, 40);
+$black: rgb(24, 24, 24);
+$grey: rgb(170, 170, 170);
+$sand: rgb(200, 200, 200);
+$white: rgb(255, 255, 255);
+$blue: #4688d7;*/
+
+h1{
+  	color: rgb(30, 215, 96);
+}
+
+h2, h3 {
+	color: rgb(255, 255, 255);
+}
+
+h4, h5 {
+	color:rgb(170, 170, 170);
+	margin: 0;
+}
+
+h4.white{
+	color: rgb(255,255,255);
+	margin-bottom: 3px;
+}
+
+body {
+  background: $rgb(24,24,24);
+  font-family: 'Roboto', sans-serif;
+  
+  a {
+    color: rgb(170, 170, 170);
+    
+    &:hover {
+      color: rgb(200, 200, 200);
+    }
+  }
+  height: 100%; 
+  width: 100%; 
+  margin: 0;
+
+
+  
+}
+
+.header{
+	background-color: rgb(40, 40, 40);
+	min-width: 100%;
+	min-height: 10%;
+	height: 8%;
+	display: flex;
+	padding:10px;
+}
+
+.main {
+	display: flex;
+	background-color: rgb(40, 40, 40);
+	min-width: 100%;
+	min-height: 90%;
+	height: 90%;
+	border-top: 1px rgb(24, 24, 24) solid;
+}
+
+.bestmatch{
+	height: 100%;
+	width:100%;
+	border-right: 1px rgb(24, 24, 24) solid;
+}
+
+.alternatives{
+	height: 100%;
+	width:100%;
+}
+
+.imagetitle{
+	margin-top: 30px;
+}
+
+#image {
+	display:block;
+    margin:auto;
+    height: 250px;
+}
+
+h2.middle{ 	
+	margin-left: 30%;
+	margin-top: 0;
+}
+
+h3.middle{ 	
+	margin-left: 30%;
+	margin-top: 0;
+}
+
+ .bold {
+ 	color: rgb(30, 215, 96);
+ }
+
+ .how{
+
+ }
+
+ .radal{
+ 	max-width: 50%;
+ 	margin-left: 25%;
+ }
+
+ .playlistbox{
+ 	width: 100;
+ 	height: 190px;
+ }
+
+ .pbimg{
+ 	padding: 5px;
+ 	height: 180px;
+ }
+
+.checkitdiv{
+	
+}
+
+button.checkit {
+	border-radius: 50px;
+	border:0;
+	background-color: rgb(30, 215, 96);
+	padding: 10px;
+	color: white;
+	font-family: 'Roboto';
+	margin-top: 50%;	
+}
