@@ -503,9 +503,9 @@
             document.getElementById("match1Name").innerHTML = playlistid[0];
             document.getElementById("match1Desc").innerHTML = playlistid[0];
             document.getElementById("match1Value1").innerHTML = playlistid[0];
-            document.getElementById("match1Value2").innerHTML = playlistid[0];
-            document.getElementById("match1Value3").innerHTML = playlistid[0];
-            document.getElementById("match1Value4").innerHTML = playlistid[0];
+            //document.getElementById("match1Value2").innerHTML = playlistid[0];
+            //document.getElementById("match1Value3").innerHTML = playlistid[0];
+            //document.getElementById("match1Value4").innerHTML = playlistid[0];
 
                         
 
@@ -515,7 +515,7 @@
 
             var topFourSingle = new Array();
 
-            for(r = 0; r < 4; r++)
+            for(r = 0; r < 5; r++)
             {
 
               topFourSingle[r] = new Array();
@@ -529,6 +529,15 @@
                         topFourSingle[r][1] = longtermplaylistdata.items[s].external_urls.spotify;
                         topFourSingle[r][2] = longtermplaylistdata.items[s].images[0].url;
                         topFourSingle[r][3] = longtermplaylistdata.items[s].tracks.total;
+
+                        if(longtermplaylistdata.items[s].owner.display_name != null)
+                        {
+                            topFourSingle[r][4] = longtermplaylistdata.items[s].owner.display_name;
+                        }
+                        else
+                        {
+                            topFourSingle[r][4] = longtermplaylistdata.items[s].owner.id;
+                        }
                     }
 
                 }
@@ -539,6 +548,7 @@
             //console.log(longtermplaylistdata);
             console.log(topFourSingle);
 
+            console.log(longtermplaylistdata);
 
 
         }
