@@ -28,7 +28,10 @@
     <h1>Brainify</h1>
   </section>
 
-
+  <div id="loader">
+    <h2 class="modalText">Hold on.. We're crunching the numbers (And your brain!)</h2>
+    <img src="images/ajax-loader.gif">
+  </div>
     <div id="myModal" class="modal animated slideInUp">
       <div class="modal-content">
         <span class="close">&times;</span>
@@ -680,6 +683,8 @@
             console.log(topFourSingle);
 
 
+            var loader = document.getElementById("loader");
+            loader.style.display = "none";
 
             var section = document.getElementById("full");
             section.style.display = "block";

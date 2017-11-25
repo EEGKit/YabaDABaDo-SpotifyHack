@@ -246,3 +246,9 @@ h2.modalText{
 	display: none;
 	background-color: rgb(40, 40, 40);
 }
+
+#loader {
+	padding-top: 15%;
+	text-align: center;
+	background-color: rgb(40,40,40);
+}
