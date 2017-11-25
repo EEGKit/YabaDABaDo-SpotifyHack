@@ -45,7 +45,7 @@
             <h4>Acousticness: <span id="BMValue3"> Calculating... </span></h4>
             <h4>Energy: <span id="BMValue4"> Calculating... </span></h4>
             <div class="col-md-12">
-                <a href="/">
+                <a href="/" id="checkit1" target="_blank">
                     <button class="checkit checkit2">Check it out!</button>
                 </a>
             </div>
@@ -619,6 +619,7 @@
             var src = document.getElementById("img4");
             src.appendChild(img);
 
+            document.getElementById("checkit1").href=topFourSingle[0][1]; 
             document.getElementById("checkit2").href=topFourSingle[1][1]; 
             document.getElementById("checkit3").href=topFourSingle[2][1]; 
             document.getElementById("checkit4").href=topFourSingle[3][1]; 
