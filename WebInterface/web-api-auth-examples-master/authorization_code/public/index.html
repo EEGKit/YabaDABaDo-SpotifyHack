@@ -409,10 +409,21 @@
             var returnPosition = calculateDiff(playlistValues, playlistIds);
 
             // Get owner ID of best playlist
-            var ownerid = playlistIdOwner[returnPosition];
+            var ownerid = [];
+            ownerid[0] = playlistIdOwner[returnPosition[0]];
+            ownerid[1] = playlistIdOwner[returnPosition[1]];
+            ownerid[2] = playlistIdOwner[returnPosition[2]];
+            ownerid[3] = playlistIdOwner[returnPosition[3]];
+            ownerid[4] = playlistIdOwner[returnPosition[4]];
+
 
             // Get playlist ID of best playlist
-            var playlistid = playlistIds[returnPosition];
+            var playlistid = []; 
+            playlistid[0]=playlistIds[returnPosition[0]];
+            playlistid[1]=playlistIds[returnPosition[1]];
+            playlistid[2]=playlistIds[returnPosition[2]];
+            playlistid[3]=playlistIds[returnPosition[3]];
+            playlistid[4]=playlistIds[returnPosition[4]];
 
             console.log("return position = " + returnPosition);
             console.log("Owner ID = " + ownerid);
@@ -492,4 +503,3 @@
 
   </body>
 </html>
-
