@@ -88,12 +88,14 @@ body {
 .bestmatch{
 	height: 100%;
 	width:100%;
+	text-align: center;
 	/*border-right: 1px rgb(24, 24, 24) solid;*/
 }
 
 .alternatives{
 	height: 100%;
 	width:100%;
+	padding-left: 60px;
 }
 
 .imagetitle{
@@ -124,10 +126,11 @@ h3.middle{
 
  }
 
- .radal{
- 	max-width: 50%;
- 	margin-left: 25%;
- }
+ .radalcontainer{
+ 		text-align: center;
+/* 	margin-left: 25%;*/
+	margin-top: 15%;
+}
 
  .playlistbox{
  	width: 100;
@@ -147,7 +150,7 @@ h3.middle{
  }
 
 #img0 img{
-	height: 300px;
+	height: 500px;
 	margin-top: -10px;
 	margin-bottom: 10px;
 }
@@ -177,6 +180,10 @@ button.checkit {
 	color: white;
 	font-family: 'Roboto';
 	margin-top: 50%;	
+}
+
+button.checkitMain{
+	margin-top: 20px;
 }
 
 button.checkit2 {
