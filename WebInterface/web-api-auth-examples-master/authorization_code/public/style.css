@@ -188,6 +188,11 @@ button.checkitMain{
 	margin-top: 20px;
 }
 
+button.login {
+	margin-top: 0px;
+	width: 300px;
+}
+
 button.checkit2 {
 	margin-top: 5%;
 
