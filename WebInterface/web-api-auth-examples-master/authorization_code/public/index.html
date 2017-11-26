@@ -293,11 +293,6 @@
     <script>
 
         var runOnce = false;
-        var tokenLongRun = null;
-
-        function saveExternal(token){
-              tokenLongRun = token;
-        }
 
         var longtermplaylistdata = null;
         var arry = [];
@@ -358,8 +353,6 @@
 
             var modal = document.getElementById('myModal');
             modal.style.display = "none";
-
-            saveExternal(access_token);
 
             // render oauth info
             oauthPlaceholder.innerHTML = oauthTemplate({
@@ -787,22 +780,20 @@
 
            // params = getHashParams();
 
-           access_token = "BQCCurhgJT4tRkcudRofpJC2qqE4NYSubmMErg9qqBWx1ok0aOV4qtxcYV907g4p7DEzn4f0_Zo4nEYSa08mZfCs7";
+           access_token = "BQC1hqbvChFvDjBi3IRjB9WZwKKmh0smfpS2fefMkJz8u-i-u0fOqgdurc1mXW8gXrz8I9OpM2FvZOaVwgtxqPOeU4Nn7B4N43rBgHM3JW57u7t2QUepSLRdWNp7yz0_DXNFPqz22YesVyJRC0T-ymDf1XO5GXcLwsxPIMpwupuygJZH-iYJBHC0252t4O5LTY8RbhTkLQASZzPJ0E20FNrM0WgB1jH92STh77p5ia8";
 
             var settings = {
             "async": true,
             "url": "https://api.spotify.com/v1/me/player/play",
             "method": "PUT",
             "headers": {
-              "authorization": "Bearer BQBCQoTVgfCXr7gU76AeDId0p9yxJfaJnAcxbJH5t8RHVr9675WNTVPn4ZY8oZUOA75jfuxMWPD5oI2In3-NzcaaCakTO7yW_4VS7DDZ0dtBWy6f7XltEMP5UQXMeGptrDaNHe27KEoh09NsjtzJKn77lD4dYz8wpObzbU43c96GGorDN0Kza4yAORWjElobuRGKWkMSr-xkVG9Ytgjp_LM4nZ1sk_FhbOfGkXs-RFY"
-
+              "authorization": "Bearer " + access_token
             },
             "data": '{"context_uri": "' + uri + '"}'
           }
 
           $.ajax(settings).done(function (response) {
             console.log(response);
-            //location.reload();
           });
 
         }
