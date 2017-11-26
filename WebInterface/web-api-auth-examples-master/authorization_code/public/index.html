@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <meta http-equiv="refresh" content="120">
+    <meta http-equiv="refresh" content="25">
     <title>Brainify - Playlists from the brain</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
@@ -23,6 +23,10 @@
   </head>
 
   <body>
+
+<script type="text/javascript">
+    var atoken = "BQAHCga-juI90BXMrnregBsZYp62brC6wjqYkGnQKA5CuJIN3S0tFPEjMvbXWu8oWxE7folQdaGJxFkWrR_KWmHjcZiElPqH7_ai3ynAq2cW0Xz4RZpuBd0lOwqYtz3t408o0KA16h_xOZpE-i_8Ior-VUn3OMC2aOPl6ReqQ4vt655PtCojkuasuL-cRDVJVCBbSR9g7GGoO5qD8l0EZncE-w8fu7f3rhEZa_xW5dQ";
+</script>
 
   <section class="header">
     <h1>Brainify</h1>
@@ -783,14 +787,14 @@
 
            // params = getHashParams();
 
-           access_token = "BQC1hqbvChFvDjBi3IRjB9WZwKKmh0smfpS2fefMkJz8u-i-u0fOqgdurc1mXW8gXrz8I9OpM2FvZOaVwgtxqPOeU4Nn7B4N43rBgHM3JW57u7t2QUepSLRdWNp7yz0_DXNFPqz22YesVyJRC0T-ymDf1XO5GXcLwsxPIMpwupuygJZH-iYJBHC0252t4O5LTY8RbhTkLQASZzPJ0E20FNrM0WgB1jH92STh77p5ia8";
+           //access_token = "BQBS0BZn-7gyioBaR9-ooHAAN6Nv3hHNIGdxHK8SpM36FC2xesID8gLE_iKw79IOY-tQ8G8WQozxd_euxp6DJ2Rnf4xsNhYWCl18En0dCS6DaKYJX2QCymRExkznDNSHr-NWWgx772QBLL1wySEF3M69GXfd41SNlFIw7wVCKdJjkUJaEyherYPX4NQJPGbnvy5c2ZhrlOQ0LiPnQe8FAVg2QtVRajCWnBSRytYy-Rk";
 
             var settings = {
             "async": true,
             "url": "https://api.spotify.com/v1/me/player/play",
             "method": "PUT",
             "headers": {
-              "authorization": "Bearer " + access_token
+              "authorization": "Bearer " + atoken
             },
             "data": '{"context_uri": "' + uri + '"}'
           }
