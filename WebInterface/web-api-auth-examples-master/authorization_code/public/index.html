@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta http-equiv="refresh" content="120">
-    <title>Example of the Authorization Code flow with Spotify</title>
+    <title>Brainify - Playlists from the brain</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Coiny" rel="stylesheet">
@@ -35,7 +35,7 @@
     <div id="myModal" class="modal animated slideInUp">
       <div class="modal-content">
         <span class="close">&times;</span>
-        <h2 class="modalText">Welcome to Brianify!</h2>
+        <h2 class="modalText">Welcome to Brainify!</h2>
         <h3 class="modalText">What is is</h3>
         <p>
           Brainify will suggest you playlists that reflect your current mood!
@@ -74,7 +74,7 @@
             <h4>Energy: <span id="BMValue4"> Calculating... </span></h4>
             <div class="col-md-12">
                 <a id="checkit1"  target="_blank">
-                    <button class="checkit checkitMain">Check it out!</button>
+                    <button class="checkit checkitMain">Play</button>
                 </a>
             </div>
 
@@ -121,7 +121,7 @@
           </div>
           <div class="col-md-3 checkitdiv">
             <a id="checkit2" target="_blank">
-              <button class="checkit">Check it out!</button>
+              <button class="checkit">Play</button>
             </a>
           </div>
         </div>
@@ -142,7 +142,7 @@
           </div>
           <div class="col-md-3 checkitdiv">
             <a id="checkit3" target="_blank">
-              <button class="checkit">Check it out!</button>
+              <button class="checkit">Play</button>
             </a>
           </div>
         </div>
@@ -163,7 +163,7 @@
           </div>
           <div class="col-md-3 checkitdiv">
             <a id="checkit4" target="_blank">
-              <button class="checkit">Check it out!</button>
+              <button class="checkit">Play</button>
             </a>
           </div>
         </div>
@@ -184,7 +184,7 @@
           </div>
           <div class="col-md-3 checkitdiv">
             <a id="checkit5" target="_blank">
-              <button class="checkit">Check it out!</button>
+              <button class="checkit">Play</button>
             </a>
           </div>
         </div>
@@ -293,6 +293,11 @@
     <script>
 
         var runOnce = false;
+        var tokenLongRun = null;
+
+        function saveExternal(token){
+              tokenLongRun = token;
+        }
 
         var longtermplaylistdata = null;
         var arry = [];
@@ -353,6 +358,8 @@
 
             var modal = document.getElementById('myModal');
             modal.style.display = "none";
+
+            saveExternal(access_token);
 
             // render oauth info
             oauthPlaceholder.innerHTML = oauthTemplate({
@@ -787,7 +794,7 @@
             "url": "https://api.spotify.com/v1/me/player/play",
             "method": "PUT",
             "headers": {
-              "authorization": "Bearer BQCxu3hHlUuXYkyxbhUYQMlwGiVj52PBbeLeY4NoFIAOe4HiWexV5on0wq3L52p-ShCdbjiSPcRGhScSRMljxuR0E_gkExUtWGliIHt0u2ZP8pzf2XVLRbesmbCxyVdrgQSZVjHcHxKi7w1ssiTMo8kiVIbrYvzkc7jgTT7vBXrI9GONsLtmtGLnpMoRgbhZ6IetQ8pUKN3E3nNBmNG3UlEoCskGFeG4TVfTTI1Ec0s"
+              "authorization": "Bearer BQBCQoTVgfCXr7gU76AeDId0p9yxJfaJnAcxbJH5t8RHVr9675WNTVPn4ZY8oZUOA75jfuxMWPD5oI2In3-NzcaaCakTO7yW_4VS7DDZ0dtBWy6f7XltEMP5UQXMeGptrDaNHe27KEoh09NsjtzJKn77lD4dYz8wpObzbU43c96GGorDN0Kza4yAORWjElobuRGKWkMSr-xkVG9Ytgjp_LM4nZ1sk_FhbOfGkXs-RFY"
 
             },
             "data": '{"context_uri": "' + uri + '"}'
