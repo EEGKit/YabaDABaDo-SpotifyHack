@@ -780,14 +780,14 @@
 
            // params = getHashParams();
 
-           access_token = "BQCCurhgJT4tRkcudRofpJC2qqE4NYSubmMErg9qqBWx1ok0aOV4qtxcYV907g4p7DEzn4f0_Zo4nEYSa08mZfCs7";
+           access_token = "BQCFXmXxTzlfsqoZvj4jRytDVFmSiC4AXiWBS0NnNGyC78eJojvxyB7Cck14m-dS2DIXUBu7xbZFRGVD4p17t2eYbmwUOz0W1gf-C-MNaQB9UJqM31HKOLMaMop4WRw8oH9P_lTKiRTZOrpJEkuaauhOLVffxXg2TTYad7G6FNolsoBu8aOAnoZxwLe0RYqWi1Mx0dpgl520s5imOb1AR5ZoXu2xEPaLtPB6M9yVHLM";
 
             var settings = {
             "async": true,
             "url": "https://api.spotify.com/v1/me/player/play",
             "method": "PUT",
             "headers": {
-              "authorization": "Bearer BQCxu3hHlUuXYkyxbhUYQMlwGiVj52PBbeLeY4NoFIAOe4HiWexV5on0wq3L52p-ShCdbjiSPcRGhScSRMljxuR0E_gkExUtWGliIHt0u2ZP8pzf2XVLRbesmbCxyVdrgQSZVjHcHxKi7w1ssiTMo8kiVIbrYvzkc7jgTT7vBXrI9GONsLtmtGLnpMoRgbhZ6IetQ8pUKN3E3nNBmNG3UlEoCskGFeG4TVfTTI1Ec0s"
+              "authorization": "Bearer " + access_token
 
             },
             "data": '{"context_uri": "' + uri + '"}'
